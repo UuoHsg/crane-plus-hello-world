@@ -1,0 +1,30 @@
+<?xml version="1.0" ?>
+<!-- Hello World 看板（固定・動かない）。文字面は正面（+x方向＝見る人の側）を向く -->
+<sdf version="1.9">
+  <model name="hello_sign">
+    <static>true</static>
+    <link name="link">
+      <!-- 看板本体：厚さ1cm × 幅10cm × 高さ5cm（低めにして、アームが上を通れるように） -->
+      <collision name="collision">
+        <geometry><box><size>0.01 0.10 0.05</size></box></geometry>
+      </collision>
+      <visual name="body">
+        <geometry><box><size>0.01 0.10 0.05</size></box></geometry>
+        <material><ambient>0.2 0.3 0.6 1</ambient><diffuse>0.2 0.3 0.6 1</diffuse></material>
+      </visual>
+      <!-- 文字面（正面側） -->
+      <visual name="hello_face">
+        <pose>0.0055 0 0 1.5708 0 1.5708</pose>
+        <geometry><plane><normal>0 0 1</normal><size>0.095 0.046</size></plane></geometry>
+        <material>
+          <ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse>
+          <pbr><metal>
+            <!-- 文字の向きがおかしい場合は hello_sign_flip_v.png / hello_sign_flip_h.png / hello_sign_rot180.png に変える -->
+            <albedo_map>/workspace/stage/textures/hello_sign.png</albedo_map>
+            <roughness>1.0</roughness><metalness>0.0</metalness>
+          </metal></pbr>
+        </material>
+      </visual>
+    </link>
+  </model>
+</sdf>
